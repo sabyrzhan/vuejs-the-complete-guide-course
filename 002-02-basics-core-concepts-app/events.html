@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id="body">
+<h2>Events in action</h2>
+<button v-on:click="add()">Add</button>
+<button v-on:click="reduce()">Remove</button>
+<p>Result: {{ counter }}</p>
+<input type="text" v-on:input="handleInput($event, 'Another name')" />
+<p>Your name is {{ name }}</p>
+<p></p>
+<form v-on:submit.prevent="handleSignUp">
+    <input type="text" /> <button>Sign Up</button>
+</form>
+
+<script type="text/javascript" src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript" src="events.js"></script>
+</body>
+</html>
