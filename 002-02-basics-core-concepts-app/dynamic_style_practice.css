@@ -1,0 +1,25 @@
+p {
+    width: 100px;
+    padding: 5px;
+}
+.box1 {
+    background-color: green;
+}
+
+.box2 {
+    background-color: blue;
+    color: white;
+}
+
+.box3 {
+    background-color: red;
+    color: yellow;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}

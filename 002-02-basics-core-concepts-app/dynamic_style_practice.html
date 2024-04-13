@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="dynamic_style_practice.css" rel="stylesheet"  />
+</head>
+<body>
+<h1>Vue styling</h1>
+<p>
+    <input type="text" v-model="style1" />
+</p>
+<p :class="[style1Computed, shown ? 'visible' : 'hidden']">
+    Style me {{ this.style1 }}
+</p>
+<button @click="toggle">Toggle paragraph</button>
+<input type="text" v-model="style2" />
+<p :style="backgroundColor">
+    Style me inline
+</p>
+
+<script type="text/javascript" src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript" src="dynamic_style_practice.js"></script>
+</body>
+</html>
