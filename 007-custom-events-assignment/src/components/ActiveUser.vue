@@ -7,12 +7,7 @@
 
 <script>
 export default {
-  props: ['user'],
-  data() {
-    return {
-      user: this.user
-    }
-  }
+  props: ['user']
 }
 </script>
 
