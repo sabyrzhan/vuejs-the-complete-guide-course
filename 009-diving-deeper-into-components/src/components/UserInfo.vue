@@ -1,10 +1,14 @@
 <template>
   <base-card>
-    <div>
-      <h3>{{ fullName }}</h3>
-      <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-    </div>
-    <p>{{ infoText }}</p>
+    <template v-slot:header>
+      <div>
+        <h3>{{ fullName }}</h3>
+        <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
+      </div>
+    </template>
+    <template v-slot:default>
+      <p>{{ infoText }}</p>
+    </template>
   </base-card>
 </template>
 
