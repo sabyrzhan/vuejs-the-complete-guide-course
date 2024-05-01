@@ -1,8 +1,8 @@
 <template>
   <div class="user-data">
     <form @submit.prevent>
-      Name: <input type="text" v-model="user.username" /> <br />
-      Age: <input type="number" v-model="user.age"> <br />
+      <label for="username">Name:</label> <input id="username" type="text" v-model="user.username" /> <br />
+      <label for="age">Age:</label> <input id="age" type="number" v-model="user.age"> <br />
       <button @click="addUser">Add</button>
     </form>
   </div>
@@ -41,5 +41,15 @@ export default {
 div.user-data {
   text-align: left;
   width: 49%;
+}
+div.user-data label {
+  display: inline-flex;
+  width: 4em;
+  margin-top: 0.5em;
+}
+
+div.user-data button {
+  margin-top: .5em;
+  width: 50px;
 }
 </style>
