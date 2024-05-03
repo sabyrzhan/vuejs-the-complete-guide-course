@@ -1,3 +1,6 @@
 <template>
-  <h3>Manage Goals</h3>
+  <div>
+    <h3>Manage Goals</h3>
+    <input type="text" />
+  </div>
 </template>
