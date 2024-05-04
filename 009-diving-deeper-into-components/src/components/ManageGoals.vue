@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <h3>Manage Goals</h3>
-    <input type="text" ref="textInput" />
-    <button @click="handleSaveClick">Save</button>
-    <teleport-to-body>
-      <error-alert v-if="isInvalid">
-        <h3>Please enter the value</h3>
-        <button @click="handleCloseDialog">OK</button>
-      </error-alert>
-    </teleport-to-body>
-  </div>
+  <h3>Manage Goals</h3>
+  <input type="text" ref="textInput" />
+  <button @click="handleSaveClick">Save</button>
+  <teleport-to-body>
+    <error-alert v-if="isInvalid">
+      <h3>Please enter the value</h3>
+      <button @click="handleCloseDialog">OK</button>
+    </error-alert>
+  </teleport-to-body>
 </template>
 
 <script>
