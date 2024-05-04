@@ -3,7 +3,6 @@ import TheHeader from "@/components/TheHeader.vue";
 import ButtonsCard from "@/components/ButtonsCard.vue";
 import ResourceList from "@/components/ResourceList.vue";
 import ResourceForm from "@/components/ResourceForm.vue";
-import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 export default {
   components: {
@@ -11,7 +10,6 @@ export default {
     ButtonsCard,
     ResourceList,
     ResourceForm,
-    ErrorAlert
   },
   data() {
     return {
@@ -22,7 +20,8 @@ export default {
   provide() {
     return {
       resources: this.resources,
-      addResourceHandler: this.handleAddResource
+      addResourceHandler: this.handleAddResource,
+      handleSwitchView: this.handleSwitchView
     }
   },
   methods: {

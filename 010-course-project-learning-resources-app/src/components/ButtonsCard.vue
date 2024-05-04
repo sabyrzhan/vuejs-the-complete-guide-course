@@ -6,19 +6,15 @@ export default {
     BaseCard
   },
   emits: ['switch-view'],
-  methods: {
-    switchView(viewName) {
-      this.$emit('switch-view', viewName)
-    }
-  }
+  inject: ['handleSwitchView']
 }
 </script>
 
 <template>
   <base-card>
     <div>
-      <button @click="switchView('resource-list')">Stored Resources</button>
-      <button @click="switchView('resource-form')">Add Resource</button>
+      <button @click="handleSwitchView('resource-list')">Stored Resources</button>
+      <button @click="handleSwitchView('resource-form')">Add Resource</button>
     </div>
   </base-card>
 </template>
