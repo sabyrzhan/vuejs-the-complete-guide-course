@@ -1,10 +1,55 @@
-<script setup>
+<script>
+import TheHeader from "@/components/TheHeader.vue";
+import ButtonsCard from "@/components/ButtonsCard.vue";
+import ResourceList from "@/components/ResourceList.vue";
+import ResourceForm from "@/components/ResourceForm.vue";
+import ErrorAlert from "@/components/ErrorAlert.vue";
+
+export default {
+  components: {
+    TheHeader,
+    ButtonsCard,
+    ResourceList,
+    ResourceForm,
+    ErrorAlert
+  },
+  data() {
+    return {
+      viewName: 'resource-list',
+      resources: []
+    }
+  },
+  provide() {
+    return {
+      resources: this.resources,
+      addResourceHandler: this.handleAddResource
+    }
+  },
+  methods: {
+    handleSwitchView(viewName) {
+      this.viewName = viewName
+    },
+    handleAddResource(resource) {
+      this.resources.unshift(resource)
+      this.viewName = 'resource-list'
+    }
+  }
+}
 </script>
 
 <template>
-  <h3>Hello</h3>
+  <the-header></the-header>
+  <buttons-card @switch-view="handleSwitchView"></buttons-card>
+  <keep-alive>
+    <component :is="viewName"></component>
+  </keep-alive>
 </template>
 
-<style scoped>
-
+<style>
+body {
+  margin: 0;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+}
 </style>
