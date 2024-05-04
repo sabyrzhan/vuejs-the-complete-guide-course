@@ -21,6 +21,7 @@ export default {
     return {
       resources: this.resources,
       addResourceHandler: this.handleAddResource,
+      deleteHandler: this.handleDeleteResource,
       handleSwitchView: this.handleSwitchView
     }
   },
@@ -31,6 +32,10 @@ export default {
     handleAddResource(resource) {
       this.resources.unshift(resource)
       this.viewName = 'resource-list'
+    },
+    handleDeleteResource(id) {
+      const index = this.resources.findIndex(resource => resource.id === id)
+      this.resources.splice(index, 1)
     }
   }
 }

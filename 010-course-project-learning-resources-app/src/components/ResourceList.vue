@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <resource-item v-for="resource in resources" v-if="resources.length > 0">
+  <resource-item v-for="resource in resources" v-if="resources.length > 0" :id="resource.id" :key="resource.id">
     <template #name>{{ resource.name}}</template>
     <template #description>{{ resource.description}}</template>
     <template #link><a :href="resource.link" target="_blank">View Resource</a></template>

@@ -20,6 +20,7 @@ export default {
         return false
       }
       const data = {
+        id: Date.now(),
         name: this.title,
         description: this.description,
         link: this.link,
