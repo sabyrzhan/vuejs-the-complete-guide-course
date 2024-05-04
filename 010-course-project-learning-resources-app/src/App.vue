@@ -3,7 +3,7 @@ import TheHeader from "@/components/TheHeader.vue";
 import ButtonsCard from "@/components/ButtonsCard.vue";
 import ResourceList from "@/components/ResourceList.vue";
 import ResourceForm from "@/components/ResourceForm.vue";
-import ErrorAlert from "@/components/ErrorAlert.vue";
+import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 export default {
   components: {

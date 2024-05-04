@@ -1,6 +1,6 @@
 <script>
-import BaseCard from "@/components/BaseCard.vue";
-import ErrorAlert from "@/components/ErrorAlert.vue";
+import BaseCard from "@/components/common/BaseCard.vue";
+import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 export default {
   components: {ErrorAlert, BaseCard},
