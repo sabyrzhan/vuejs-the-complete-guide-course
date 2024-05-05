@@ -1,10 +1,5 @@
 <script>
-import BaseCard from "@/components/common/BaseCard.vue";
-
 export default {
-  components: {
-    BaseCard
-  },
   emits: ['switch-view'],
   inject: ['handleSwitchView']
 }

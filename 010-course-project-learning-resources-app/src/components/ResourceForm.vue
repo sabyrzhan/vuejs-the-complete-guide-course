@@ -1,9 +1,8 @@
 <script>
-import BaseCard from "@/components/common/BaseCard.vue";
 import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 export default {
-  components: {ErrorAlert, BaseCard},
+  components: {ErrorAlert},
   inject: ['addResourceHandler'],
   data() {
     return {

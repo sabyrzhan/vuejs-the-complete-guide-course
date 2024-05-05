@@ -1,13 +1,3 @@
-<script>
-export default {
-  data() {
-    return {
-      data: ''
-    }
-  }
-}
-</script>
-
 <template>
   <div>
     <slot></slot>
@@ -16,10 +6,10 @@ export default {
 
 <style scoped>
 div {
-  border-radius: 4px;
-  border-color: black;
-  box-shadow: 0 0 5px black;
-  padding: 10px;
-  margin: 30px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px black;
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 40rem;
 }
 </style>
