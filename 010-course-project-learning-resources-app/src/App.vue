@@ -1,19 +1,14 @@
 <script>
 import TheHeader from "@/components/TheHeader.vue";
-import ButtonsCard from "@/components/ButtonsCard.vue";
-import ResourceList from "@/components/ResourceList.vue";
-import ResourceForm from "@/components/ResourceForm.vue";
+import ResourceContent from "@/components/ResourceContent.vue";
 
 export default {
   components: {
+    ResourceContent,
     TheHeader,
-    ButtonsCard,
-    ResourceList,
-    ResourceForm,
   },
   data() {
     return {
-      viewName: 'resource-list',
       resources: []
     }
   },
@@ -22,16 +17,11 @@ export default {
       resources: this.resources,
       addResourceHandler: this.handleAddResource,
       deleteHandler: this.handleDeleteResource,
-      handleSwitchView: this.handleSwitchView
     }
   },
   methods: {
-    handleSwitchView(viewName) {
-      this.viewName = viewName
-    },
     handleAddResource(resource) {
       this.resources.unshift(resource)
-      this.viewName = 'resource-list'
     },
     handleDeleteResource(id) {
       const index = this.resources.findIndex(resource => resource.id === id)
@@ -43,10 +33,7 @@ export default {
 
 <template>
   <the-header></the-header>
-  <buttons-card @switch-view="handleSwitchView"></buttons-card>
-  <keep-alive>
-    <component :is="viewName"></component>
-  </keep-alive>
+  <resource-content></resource-content>
 </template>
 
 <style>

@@ -3,7 +3,7 @@ import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 export default {
   components: {ErrorAlert},
-  inject: ['addResourceHandler'],
+  inject: ['addResourceHandler', 'switchToListView'],
   data() {
     return {
       isValid: true,
@@ -28,6 +28,7 @@ export default {
       this.description = ''
       this.link = ''
       this.addResourceHandler(data)
+      this.switchToListView()
     },
     handleCloseDialog() {
       this.isValid = true
