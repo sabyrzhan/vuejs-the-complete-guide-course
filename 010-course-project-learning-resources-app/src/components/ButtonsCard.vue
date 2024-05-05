@@ -8,8 +8,8 @@ export default {
 <template>
   <base-card>
     <div>
-      <button @click="handleSwitchView('resource-list')">Stored Resources</button>
-      <button @click="handleSwitchView('resource-form')">Add Resource</button>
+      <base-button @click="handleSwitchView('resource-list')">Stored Resources</base-button>
+      <base-button @click="handleSwitchView('resource-form')">Add Resource</base-button>
     </div>
   </base-card>
 </template>
@@ -20,7 +20,7 @@ div {
 }
 
 div button {
-  margin: 10px;
+  margin: 10px 0;
   font-size: 1em;
 }
 </style>

@@ -55,7 +55,7 @@ export default {
       </div>
 
       <div class="control">
-        <button @click="addResource">Add Resource</button>
+        <base-button @click="addResource">Add Resource</base-button>
       </div>
     </div>
   </base-card>

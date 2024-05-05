@@ -10,7 +10,7 @@ export default {
     <div class="resource-item">
       <div class="header">
         <h3>{{ name }}</h3>
-        <button @click="deleteHandler(id)">Delete</button>
+        <base-button mode="flat" @click="deleteHandler(id)">Delete</base-button>
       </div>
       <p>{{ description }}</p>
       <a :href="link" target="_blank">View Resource</a>
