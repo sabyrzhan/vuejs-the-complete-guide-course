@@ -1,8 +1,8 @@
 <script>
-import ErrorAlert from "@/components/common/ErrorAlert.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 
 export default {
-  components: {ErrorAlert},
+  components: {BaseButton},
   inject: ['addResourceHandler', 'switchToListView'],
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
   </base-card>
   <error-alert v-if="!isValid">
     <template #buttons>
-      <button @click="handleCloseDialog">Ok</button>
+      <base-button @click="handleCloseDialog">Ok</base-button>
     </template>
   </error-alert>
 </template>
