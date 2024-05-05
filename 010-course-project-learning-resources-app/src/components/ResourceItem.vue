@@ -3,7 +3,7 @@ import BaseCard from "@/components/common/BaseCard.vue";
 
 export default {
   components: {BaseCard},
-  props: ['id'],
+  props: ['id', 'name', 'description', 'link'],
   inject: ['deleteHandler']
 }
 </script>
@@ -11,13 +11,11 @@ export default {
 <template>
   <base-card>
     <div class="header">
-      <h2><slot name="name"></slot></h2>
+      <h2>{{ name }}</h2>
       <a href="#" @click="deleteHandler(id)">Delete</a>
     </div>
-    <p>
-      <slot name="description"></slot>
-    </p>
-    <slot name="link"></slot>
+    <p>{{ description }}</p>
+    <a :href="link" target="_blank">View Resource</a>
   </base-card>
 </template>
 
