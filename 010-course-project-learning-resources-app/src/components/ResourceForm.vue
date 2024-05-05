@@ -40,22 +40,22 @@ export default {
 <template>
   <base-card>
     <div class="container">
-      <div class="control">
+      <div class="form-control">
         <label for="title">Title:</label>
         <input id="title" key="title" type="text" v-model="title" />
       </div>
 
-      <div class="control">
+      <div class="form-control">
         <label for="description">Description:</label>
         <textarea id="description" key="description" v-model="description"></textarea>
       </div>
 
-      <div class="control">
+      <div class="form-control">
         <label for="link">Link:</label>
         <input type="text" id="link" key="link" v-model="link" />
       </div>
 
-      <div class="control">
+      <div class="form-control">
         <base-button @click="addResource">Add Resource</base-button>
       </div>
     </div>
@@ -68,22 +68,29 @@ export default {
 </template>
 
 <style scoped>
-div.container {
-  margin: 20px;
-}
-div.control {
-  margin: 0 0 20px 0;
-}
 label {
+  font-weight: bold;
   display: block;
-}
-input[type=text] {
-  width: 100%;
-  height: 20px;
+  margin-bottom: 0.5rem;
 }
 
+input,
 textarea {
+  display: block;
   width: 100%;
-  height: 50px;
+  font: inherit;
+  padding: 0.15rem;
+  border: 1px solid #ccc;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3a0061;
+  background-color: #f7ebff;
+}
+
+.form-control {
+  margin: 1rem 0;
 }
 </style>
