@@ -60,7 +60,7 @@ button:active {
   height: 8rem;
   background-color: #290033;
   margin-bottom: 2rem;
-  transition: transform 1s ease-in-out;
+  /*transition: transform 1s ease-in-out;*/
 }
 .container {
   max-width: 40rem;
@@ -75,6 +75,22 @@ button:active {
 }
 
 .animate {
-  transform: translateX(-150px);
+  /*transform: translateX(-150px);*/
+  animation: slide-the-box 0.3s ease-in-out forwards;
 }
+
+@keyframes slide-the-box {
+  0% {
+    transform: translateX(0px) scale(1);
+  }
+
+  50% {
+    transform: translateX(-120px) scale(1.3)
+  }
+
+  100% {
+    transform: translateX(-150px) scale(1);
+  }
+}
+
 </style>
