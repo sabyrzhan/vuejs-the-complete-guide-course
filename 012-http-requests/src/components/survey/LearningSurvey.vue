@@ -46,19 +46,30 @@ export default {
       invalidInput: false,
     };
   },
-  emits: ['survey-submit'],
+  // emits: ['survey-submit'],
   methods: {
-    submitSurvey() {
+    async submitSurvey() {
       if (this.enteredName === '' || !this.chosenRating) {
         this.invalidInput = true;
         return;
       }
       this.invalidInput = false;
 
-      this.$emit('survey-submit', {
-        userName: this.enteredName,
-        rating: this.chosenRating,
-      });
+      // this.$emit('survey-submit', {
+      //   userName: this.enteredName,
+      //   rating: this.chosenRating,
+      // });
+
+      await fetch(process.env['VUE_APP_FIREBASE_URL'], {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userName: this.enteredName,
+          rating: this.chosenRating,
+        })
+      })
 
       this.enteredName = '';
       this.chosenRating = null;
