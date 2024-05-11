@@ -2,7 +2,7 @@
   <li>
     <h3>{{ name }}</h3>
     <div class="team-members">{{ memberCount }} Members</div>
-    <router-link :to="{ name: 'team-members', params: { teamId: this.id }}">View Members</router-link>
+    <router-link :to="{ name: 'team-members', params: { teamId: this.id }, query: { sort: 'asc', categories: [1,2,3,4]}}">View Members</router-link>
   </li>
 </template>
 
