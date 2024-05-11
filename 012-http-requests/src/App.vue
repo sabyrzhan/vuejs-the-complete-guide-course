@@ -1,6 +1,6 @@
 <template>
-  <learning-survey></learning-survey>
-  <user-experiences></user-experiences>
+  <learning-survey @data-sent="handleDataSent"></learning-survey>
+  <user-experiences :watch-data="watchData"></user-experiences>
 </template>
 
 <script>
@@ -11,6 +11,11 @@ export default {
   components: {
     LearningSurvey,
     UserExperiences,
+  },
+  data() {
+    return {
+      watchData: null
+    }
   },
   // data() {
   //   return {
@@ -27,6 +32,9 @@ export default {
     //   this.savedSurveyResults.push(surveyResult);
     //   console.log(surveyResult);
     // },
+    handleDataSent() {
+      this.watchData = new Date().toISOString()
+    }
   },
 };
 </script>

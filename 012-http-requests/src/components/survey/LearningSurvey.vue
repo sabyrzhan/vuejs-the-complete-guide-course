@@ -42,6 +42,7 @@
 
 <script>
 export default {
+  emits: ['data-sent'],
   data() {
     return {
       enteredName: '',
@@ -79,6 +80,8 @@ export default {
 
         if (!result.ok) {
           this.error = 'Error while sending the data. Check your data and try again!';
+        } else {
+          this.$emit('data-sent', true)
         }
       } catch (error) {
         this.error = 'Server error. Please try again later!';

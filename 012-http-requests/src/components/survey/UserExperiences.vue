@@ -24,8 +24,14 @@
 import SurveyResult from './SurveyResult.vue';
 
 export default {
+  props: ['watch-data'],
   components: {
     SurveyResult,
+  },
+  watch: {
+    watchData() {
+      this.loadSurveys()
+    }
   },
   data() {
     return {
