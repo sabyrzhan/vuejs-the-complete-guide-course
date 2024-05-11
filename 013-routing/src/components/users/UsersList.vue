@@ -12,6 +12,10 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  beforeRouteLeave(to, from, next) {
+    const ask = confirm('Are you sure?')
+    next(ask);
+  }
 };
 </script>
 
