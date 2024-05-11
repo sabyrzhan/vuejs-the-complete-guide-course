@@ -8,6 +8,12 @@
     <button @click="hideDialog">Close it!</button>
   </base-modal>
   <div class="container">
+    <transition>
+      <p v-if="isParaVisible">This is the paragraph</p>
+    </transition>
+    <button @click="toggleParagraph">Click</button>
+  </div>
+  <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
 </template>  
@@ -15,7 +21,7 @@
 <script>
 export default {
   data() {
-    return { dialogIsVisible: false, doAnimate: false };
+    return { dialogIsVisible: false, doAnimate: false, isParaVisible: false };
   },
   methods: {
     showDialog() {
@@ -26,6 +32,9 @@ export default {
     },
     animate() {
       this.doAnimate = true;
+    },
+    toggleParagraph() {
+      this.isParaVisible = !this.isParaVisible;
     }
   },
 };
@@ -77,6 +86,34 @@ button:active {
 .animate {
   /*transform: translateX(-150px);*/
   animation: slide-the-box 0.3s ease-in-out forwards;
+}
+
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.v-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.v-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.v-leave-active {
+  transition: all 0.3s ease-out;
 }
 
 @keyframes slide-the-box {
