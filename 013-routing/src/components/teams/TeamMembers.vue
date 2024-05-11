@@ -47,6 +47,12 @@ export default {
     teamId() {
       this.renderTeams()
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    if (to.meta.requiresAuth) {
+      console.log('This route requires auth to view');
+    }
+    next()
   }
 };
 </script>

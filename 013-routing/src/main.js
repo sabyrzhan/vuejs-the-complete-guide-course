@@ -14,9 +14,9 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/teams'},
     { path: '/teams', components: { default: TeamsList, footer: TeamsFooter}, children: [
-      { path: ':teamId', name: 'team-members', component: TeamMembers, props: true },
+      { path: ':teamId', name: 'team-members', component: TeamMembers, props: true, meta: { requiresAuth: true } },
       ] },
-    { path: '/users', components: { default: UsersList, footer: UsersFooter }},
+    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
     { path: '/:notFound(.*)', component: NotFound}
   ],
   linkActiveClass: 'active',
