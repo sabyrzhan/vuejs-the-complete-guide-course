@@ -26,9 +26,12 @@
           <input type="radio" id="rating-great" value="great" name="rating" v-model="chosenRating" />
           <label for="rating-great">Great</label>
         </div>
-        <p
-          v-if="invalidInput"
-        >One or more input fields are invalid. Please check your provided data.</p>
+        <p v-if="invalidInput">
+          One or more input fields are invalid. Please check your provided data.
+        </p>
+        <p v-if="error">
+          {{error}}
+        </p>
         <div>
           <base-button>Submit</base-button>
         </div>
@@ -44,11 +47,13 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error: null
     };
   },
   // emits: ['survey-submit'],
   methods: {
     async submitSurvey() {
+      this.error = null;
       if (this.enteredName === '' || !this.chosenRating) {
         this.invalidInput = true;
         return;
@@ -60,16 +65,24 @@ export default {
       //   rating: this.chosenRating,
       // });
 
-      await fetch(process.env['VUE_APP_FIREBASE_URL'], {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userName: this.enteredName,
-          rating: this.chosenRating,
+      try {
+        const result = await fetch(process.env['VUE_APP_FIREBASE_URL'], {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userName: this.enteredName,
+            rating: this.chosenRating,
+          })
         })
-      })
+
+        if (!result.ok) {
+          this.error = 'Error while sending the data. Check your data and try again!';
+        }
+      } catch (error) {
+        this.error = 'Server error. Please try again later!';
+      }
 
       this.enteredName = '';
       this.chosenRating = null;

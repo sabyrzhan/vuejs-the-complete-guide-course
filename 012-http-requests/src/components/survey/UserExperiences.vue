@@ -5,7 +5,10 @@
       <div>
         <base-button @click="loadSurveys">Load Submitted Experiences</base-button>
       </div>
-      <ul>
+      <p v-if="isLoading">Loading...</p>
+      <p v-else-if="!isLoading && error">{{ error }}</p>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">No data.</p>
+      <ul v-else-if="!isLoading && results && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -26,25 +29,37 @@ export default {
   },
   data() {
     return {
-      results: []
+      results: [],
+      isLoading: false,
+      error: null
     }
   },
   methods: {
-    async loadSurveys() {
+    loadSurveys() {
+      this.isLoading = true
+      this.error = null
       fetch(process.env['VUE_APP_FIREBASE_URL'])
         .then(res => res.json())
         .then(data => {
           const results = []
           for (const id in data) {
-            results.push({
+            results.unshift({
               id: id,
               name: data[id].userName,
               rating: data[id].rating,
             });
           }
           this.results = results
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.isLoading = false
+          this.error = 'Error fetching data. Try again later!'
         })
     }
+  },
+  mounted() {
+    this.loadSurveys()
   }
 };
 </script>
