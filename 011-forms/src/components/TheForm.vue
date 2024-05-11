@@ -51,6 +51,9 @@
       <input type="checkbox" name="confirm-tos" id="confirm-tos" value="confirm-tos" v-model="confirm" />
       <label for="confirm-tos">Confirm Tos?</label>
     </div>
+    <div class="form-control">
+      <rating-control></rating-control>
+    </div>
     <div>
       <button>Save Data</button>
     </div>
@@ -58,7 +61,11 @@
 </template>
 
 <script>
+import RatingControl from '@/components/RatingControl.vue';
 export default {
+  components: {
+    RatingControl
+  },
   data() {
     return {
       userName: '',
