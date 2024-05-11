@@ -21,12 +21,20 @@ const router = createRouter({
   ],
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition)
     if (savedPosition != null) {
       return savedPosition;
     }
     return {top: 0, left: 0};
   }
+})
+
+router.beforeEach((to, from, next) => {
+  // if (to.name === 'team-members') {
+  //   next({ path: '/not-found' })
+  // } else {
+  //   next(true)
+  // }
+  next(true);
 })
 
 const app = createApp(App)
