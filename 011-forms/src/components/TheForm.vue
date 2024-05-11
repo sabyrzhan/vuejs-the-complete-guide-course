@@ -52,7 +52,7 @@
       <label for="confirm-tos">Confirm Tos?</label>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model:ratingValue="rating"></rating-control>
     </div>
     <div>
       <button>Save Data</button>
@@ -74,12 +74,14 @@ export default {
       interest: [],
       how: null,
       confirm: null,
-      isValidUsername: true
+      isValidUsername: true,
+      rating: null
     }
   },
   methods: {
     submitForm() {
-      console.log(this.confirm)
+      console.log(this.rating)
+      this.rating = null
     },
     validateUsername() {
       this.isValidUsername = this.userName !== '';

@@ -1,17 +1,17 @@
 <template>
   <ul class="rating">
     <li>
-      <button @click="setRatingValue('poor')" :class="{active: ratingValue === 'poor'}">
+      <button type="button" @click="setRatingValue('poor')" :class="{active: ratingValue === 'poor'}">
         Poor
       </button>
     </li>
     <li>
-      <button @click="setRatingValue('average')" :class="{active: ratingValue === 'average'}">
+      <button type="button" @click="setRatingValue('average')" :class="{active: ratingValue === 'average'}">
         Average
       </button>
     </li>
     <li>
-      <button @click="setRatingValue('great')" :class="{active: ratingValue === 'great'}">
+      <button type="button" @click="setRatingValue('great')" :class="{active: ratingValue === 'great'}">
         Great
       </button>
     </li>
@@ -20,14 +20,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      ratingValue: ''
-    }
-  },
+  props: ['ratingValue'],
+  emits: ['update:ratingValue'],
   methods: {
     setRatingValue(value) {
-      this.ratingValue = value
+      this.$emit('update:ratingValue', value);
     }
   }
 }
