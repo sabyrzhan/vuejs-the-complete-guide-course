@@ -14,6 +14,13 @@ const store = createStore({
       state.counter += value1;
     }
   },
+  actions: {
+    incrementAsync(ctx, value) {
+      setTimeout(() => {
+        ctx.commit('increment', value);
+      }, 1000);
+    }
+  },
   getters: {
     counter(state, getters) {
       if (state.counter === 0) {
