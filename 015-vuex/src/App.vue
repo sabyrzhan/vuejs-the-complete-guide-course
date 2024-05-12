@@ -1,14 +1,15 @@
 <template>
   <base-container title="Vuex">
     <the-counter></the-counter>
-    <button @click="increment">Add 10</button>
-    <button @click="incrementAsync">Add 10 (async)</button>
+    <button @click="increment(10)">Add 10</button>
+    <button @click="incrementAsync(10)">Add 10 (async)</button>
   </base-container>
 </template>
 
 <script>
 import BaseContainer from './components/BaseContainer.vue';
 import TheCounter from '@/components/TheCounter.vue';
+import { mapMutations, mapActions} from 'vuex';
 
 export default {
   components: {
@@ -16,12 +17,8 @@ export default {
     BaseContainer,
   },
   methods: {
-    increment() {
-      this.$store.commit('increment', 10);
-    },
-    incrementAsync() {
-      this.$store.dispatch('incrementAsync', 10);
-    }
+    ...mapMutations(['increment']),
+    ...mapActions(['incrementAsync']),
   }
 };
 </script>
