@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     increment() {
-      this.$store.commit('increment');
+      this.$store.commit('increment', 10);
     }
   }
 };
