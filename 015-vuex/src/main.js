@@ -6,12 +6,19 @@ import App from './App.vue';
 const store = createStore({
   state() {
     return {
-      counter: 0
+      counter: 0,
+      isLoggedIn: false
     }
   },
   mutations: {
     increment(state, value1) {
       state.counter += value1;
+    },
+    login(state) {
+      state.isLoggedIn = true;
+    },
+    logout(state) {
+      state.isLoggedIn = false;
     }
   },
   actions: {

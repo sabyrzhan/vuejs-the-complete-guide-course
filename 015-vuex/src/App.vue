@@ -1,24 +1,32 @@
 <template>
-  <base-container title="Vuex">
+  <base-container title="Vuex" v-if="isLoggedIn">
     <the-counter></the-counter>
     <button @click="increment(10)">Add 10</button>
     <button @click="incrementAsync(10)">Add 10 (async)</button>
+  </base-container>
+  <base-container title="Auth">
+    <auth></auth>
   </base-container>
 </template>
 
 <script>
 import BaseContainer from './components/BaseContainer.vue';
 import TheCounter from '@/components/TheCounter.vue';
-import { mapMutations, mapActions} from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
+import Auth from '@/components/Auth.vue';
 
 export default {
   components: {
+    Auth,
     TheCounter,
     BaseContainer,
   },
   methods: {
     ...mapMutations(['increment']),
-    ...mapActions(['incrementAsync']),
+    ...mapActions(['incrementAsync'])
+  },
+  computed: {
+    ...mapState(['isLoggedIn', 'counter'])
   }
 };
 </script>
