@@ -25,8 +25,20 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
-  inject: ['isLoggedIn', 'login', 'logout', 'cart'],
+  computed: {
+    ...mapState('cart', {
+      cart: state => state.cart
+    }),
+    ...mapState('auth', {
+      isLoggedIn: state => state.isLoggedIn
+    }),
+  },
+  methods: {
+    ...mapMutations('auth', ['login', 'logout'])
+  },
 };
 </script>
 

@@ -22,8 +22,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
-  inject: ['removeProductFromCart'],
   props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
@@ -33,7 +34,8 @@ export default {
   methods: {
     remove() {
       this.removeProductFromCart(this.prodId);
-    }
+    },
+    ...mapMutations('cart', ['removeProductFromCart']),
   }
 };
 </script>

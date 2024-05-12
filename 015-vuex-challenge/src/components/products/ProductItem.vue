@@ -19,8 +19,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
-  inject: ['addProductToCart'],
   props: ['id', 'image', 'title', 'price', 'description'],
   methods: {
     addToCart() {
@@ -31,6 +32,7 @@ export default {
         price: this.price,
       });
     },
+    ...mapMutations('cart', ['addProductToCart']),
   },
 };
 </script>
