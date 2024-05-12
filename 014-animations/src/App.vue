@@ -14,7 +14,7 @@
     </transition>
   </div>
   <div class="container">
-    <transition name="para"
+    <transition :css="false"
                 @before-enter="handleParaBeforeEnter"
                 @enter="handleParaEnter"
                 @after-enter="handleParaEnterAfter"
