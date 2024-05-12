@@ -60,5 +60,10 @@ li {
 .users-list-enter-active,
 .users-list-leave-active {
   transition: all 0.3s;
+  position: absolute;
+}
+
+.users-list-move {
+  transition: transform 1s;
 }
 </style>
