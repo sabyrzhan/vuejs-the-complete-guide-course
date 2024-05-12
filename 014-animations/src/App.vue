@@ -88,32 +88,34 @@ button:active {
   animation: slide-the-box 0.3s ease-in-out forwards;
 }
 
-.v-enter-from {
+/*.v-enter-from {
   opacity: 0;
   transform: translateY(-30px);
-}
+}*/
 
-.v-enter-to {
+/*.v-enter-to {
   opacity: 1;
   transform: translateY(0);
-}
+}*/
 
 .v-enter-active {
-  transition: all 0.3s ease-in-out;
+  /*transition: all 0.3s ease-in-out;*/
+  animation: slide-the-box 0.3s ease-in-out forwards;
 }
 
-.v-leave-from {
+/*.v-leave-from {
   opacity: 1;
   transform: translateY(0);
-}
+}*/
 
-.v-leave-to {
+/*.v-leave-to {
   opacity: 0;
   transform: translateY(-30px);
-}
+}*/
 
 .v-leave-active {
-  transition: all 0.3s ease-out;
+  /*transition: all 0.3s ease-out;*/
+  animation: slide-the-box 0.3s ease-in-out forwards;
 }
 
 @keyframes slide-the-box {
