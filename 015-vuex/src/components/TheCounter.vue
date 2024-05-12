@@ -8,9 +8,9 @@ import { mapGetters, mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['counter']),
-    ...mapState({
-      stateCounter: state => state.numbers.counter
+    ...mapGetters('numbers', ['counter']),
+    ...mapState('numbers', {
+      stateCounter: state => state.counter
     })
   }
 }

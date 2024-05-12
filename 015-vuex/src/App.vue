@@ -22,8 +22,8 @@ export default {
     BaseContainer,
   },
   methods: {
-    ...mapMutations(['increment']),
-    ...mapActions(['incrementAsync'])
+    ...mapMutations('numbers', ['increment']),
+    ...mapActions('numbers', ['incrementAsync'])
   },
   computed: {
     ...mapState(['isLoggedIn'])
