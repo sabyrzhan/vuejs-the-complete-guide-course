@@ -26,7 +26,7 @@ export default {
     ...mapActions(['incrementAsync'])
   },
   computed: {
-    ...mapState(['isLoggedIn', 'counter'])
+    ...mapState(['isLoggedIn'])
   }
 };
 </script>

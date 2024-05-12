@@ -10,7 +10,7 @@ export default {
   computed: {
     ...mapGetters(['counter']),
     ...mapState({
-      'stateCounter': 'counter'
+      stateCounter: state => state.numbers.counter
     })
   }
 }

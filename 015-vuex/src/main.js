@@ -3,23 +3,17 @@ import { createStore} from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false
+      counter2: 1
     }
   },
   mutations: {
     increment(state, value1) {
       state.counter += value1;
     },
-    login(state) {
-      state.isLoggedIn = true;
-    },
-    logout(state) {
-      state.isLoggedIn = false;
-    }
   },
   actions: {
     incrementAsync(ctx, value) {
@@ -38,6 +32,25 @@ const store = createStore({
     },
     defaultIncrementer() {
       return 10
+    }
+  }
+}
+
+const store = createStore({
+  modules: {
+    numbers: counterModule
+  },
+  state() {
+    return {
+      isLoggedIn: false
+    }
+  },
+  mutations: {
+    login(state) {
+      state.isLoggedIn = true;
+    },
+    logout(state) {
+      state.isLoggedIn = false;
     }
   }
 })
