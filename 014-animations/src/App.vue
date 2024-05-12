@@ -1,46 +1,54 @@
+<!--<template>-->
+<!--  <div class="container">-->
+<!--    <users-list></users-list>-->
+<!--  </div>-->
+<!--  <div class="container">-->
+<!--    <div class="block" :class="{animate: doAnimate}"></div>-->
+<!--    <button @click="animate">Animate</button>-->
+<!--  </div>-->
+<!--  <base-modal @close="hideDialog" :open="dialogIsVisible">-->
+<!--    <p>This is a test dialog!</p>-->
+<!--    <button @click="hideDialog">Close it!</button>-->
+<!--  </base-modal>-->
+<!--  <div class="container">-->
+<!--    <transition name="show-users" mode="out-in">-->
+<!--      <button @click="toggleShowUsers" v-if="!areUsesVisible">Show users</button>-->
+<!--      <button @click="toggleShowUsers" v-else>Hide users</button>-->
+<!--    </transition>-->
+<!--  </div>-->
+<!--  <div class="container">-->
+<!--    <transition :css="false"-->
+<!--                @before-enter="handleParaBeforeEnter"-->
+<!--                @enter="handleParaEnter"-->
+<!--                @after-enter="handleParaEnterAfter"-->
+<!--                @before-leave="handleParaBeforeLeave"-->
+<!--                @leave="handleParaLeave"-->
+<!--                @after-leave="handleParaLeaveAfter"-->
+<!--                @enter-cancelled="handleParaEnterCancelled"-->
+<!--                @leave-cancelled="handleParaLeaveCancelled"-->
+<!--    >-->
+<!--      <p v-if="isParaVisible">This is the paragraph</p>-->
+<!--    </transition>-->
+<!--    <button @click="toggleParagraph">Click</button>-->
+<!--  </div>-->
+<!--  <div class="container">-->
+<!--    <button @click="showDialog">Show Dialog</button>-->
+<!--  </div>-->
+<!--</template>  -->
+
 <template>
-  <div class="container">
-    <users-list></users-list>
-  </div>
-  <div class="container">
-    <div class="block" :class="{animate: doAnimate}"></div>
-    <button @click="animate">Animate</button>
-  </div>
-  <base-modal @close="hideDialog" :open="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
-  <div class="container">
-    <transition name="show-users" mode="out-in">
-      <button @click="toggleShowUsers" v-if="!areUsesVisible">Show users</button>
-      <button @click="toggleShowUsers" v-else>Hide users</button>
+  <router-view v-slot="routerSlot">
+    <transition name="router" mode="out-in">
+      <component :is="routerSlot.Component"></component>
     </transition>
-  </div>
-  <div class="container">
-    <transition :css="false"
-                @before-enter="handleParaBeforeEnter"
-                @enter="handleParaEnter"
-                @after-enter="handleParaEnterAfter"
-                @before-leave="handleParaBeforeLeave"
-                @leave="handleParaLeave"
-                @after-leave="handleParaLeaveAfter"
-                @enter-cancelled="handleParaEnterCancelled"
-                @leave-cancelled="handleParaLeaveCancelled"
-    >
-      <p v-if="isParaVisible">This is the paragraph</p>
-    </transition>
-    <button @click="toggleParagraph">Click</button>
-  </div>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
-</template>  
+  </router-view>
+</template>
 
 <script>
-import UsersList from '@/components/UsersList.vue';
+// import UsersList from '@/components/UsersList.vue';
 
 export default {
-  components: { UsersList },
+  // components: { UsersList },
   data() {
     return {
       dialogIsVisible: false,
@@ -184,6 +192,20 @@ button:active {
 
 .show-users-enter-active, .show-users-leave-active{
   transition: opacity 0.3s ease;
+}
+
+.router-enter-from, .router-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.router-enter-to, .router-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.router-enter-active, .router-leave-active {
+  transition: all 0.3s ease;
 }
 
 @keyframes slide-the-box {
