@@ -1,3 +1,5 @@
+import mutations from '@/store/modules/auth/mutations';
+
 export default {
   namespaced: true,
   state() {
@@ -5,12 +7,5 @@ export default {
       isLoggedIn: false
     }
   },
-  mutations: {
-    login(state) {
-      state.isLoggedIn = true;
-    },
-    logout(state) {
-      state.isLoggedIn = false;
-    },
-  }
+  mutations: mutations
 }
