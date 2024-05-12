@@ -14,7 +14,16 @@
     </transition>
   </div>
   <div class="container">
-    <transition name="para">
+    <transition name="para"
+                @before-enter="handleParaBeforeEnter"
+                @enter="handleParaEnter"
+                @after-enter="handleParaEnterAfter"
+                @before-leave="handleParaBeforeLeave"
+                @leave="handleParaLeave"
+                @after-leave="handleParaLeaveAfter"
+                @enter-cancelled="handleParaEnterCancelled"
+                @leave-cancelled="handleParaLeaveCancelled"
+    >
       <p v-if="isParaVisible">This is the paragraph</p>
     </transition>
     <button @click="toggleParagraph">Click</button>
@@ -27,7 +36,14 @@
 <script>
 export default {
   data() {
-    return { dialogIsVisible: false, doAnimate: false, isParaVisible: false, areUsesVisible: false };
+    return {
+      dialogIsVisible: false,
+      doAnimate: false,
+      isParaVisible: false,
+      areUsesVisible: false,
+      enterInterval: false,
+      leaveInterval: false
+    };
   },
   methods: {
     showDialog() {
@@ -44,6 +60,61 @@ export default {
     },
     toggleShowUsers() {
       this.areUsesVisible = !this.areUsesVisible;
+    },
+    handleParaBeforeEnter(el) {
+      console.log('enter before', el);
+      el.style.opacity = 0;
+    },
+    _paraToggler(show, el, done) {
+      let count = 0.0
+      if (!show) {
+        count = 1;
+      }
+      const interval = setInterval(() => {
+        const factor = 0.1;
+        if (show) {
+          count += factor;
+        } else {
+          count -= factor;
+        }
+
+        el.style.opacity = count;
+        if (count >= 1 || count <= 0) {
+          clearInterval(interval)
+          done()
+        }
+      }, 20)
+      if (show) {
+        this.enterInterval = interval;
+      } else {
+        this.leaveInterval = interval;
+      }
+    },
+    handleParaEnterCancelled() {
+      clearInterval(this.enterInterval)
+    },
+    handleParaLeaveCancelled() {
+      clearInterval(this.leaveInterval)
+    },
+    handleParaEnter(el, done) {
+      console.log('enter', el);
+      this._paraToggler(true, el, done)
+    },
+    handleParaEnterAfter(el) {
+      console.log('enter after', el);
+      el.style.opacity = 1;
+    },
+    handleParaBeforeLeave(el) {
+      console.log('leave before', el);
+      el.style.opacity = 1;
+    },
+    handleParaLeave(el, done) {
+      console.log('leave', el);
+      this._paraToggler(false, el, done)
+    },
+    handleParaLeaveAfter(el) {
+      console.log('leave after', el);
+      el.style.opacity = 0;
     }
   },
 };
@@ -94,36 +165,6 @@ button:active {
 
 .animate {
   /*transform: translateX(-150px);*/
-  animation: slide-the-box 0.3s ease-in-out forwards;
-}
-
-.para-enter-from {
-/*  opacity: 0;
-  transform: translateY(-30px);*/
-}
-
-.para-enter-to {
-  /*opacity: 1;
-  transform: translateY(0);*/
-}
-
-.para-enter-active {
-  /*transition: all 0.3s ease-in-out;*/
-  animation: slide-the-box 0.3s ease-in-out forwards;
-}
-
-.para-leave-from {
-  /*opacity: 1;
-  transform: translateY(0);*/
-}
-
-.para-leave-to {
-  /*opacity: 0;
-  transform: translateY(-30px);*/
-}
-
-.para-leave-active {
-  /*transition: all 0.3s ease-out;*/
   animation: slide-the-box 0.3s ease-in-out forwards;
 }
 
