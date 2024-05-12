@@ -8,6 +8,12 @@
     <button @click="hideDialog">Close it!</button>
   </base-modal>
   <div class="container">
+    <transition name="show-users" mode="out-in">
+      <button @click="toggleShowUsers" v-if="!areUsesVisible">Show users</button>
+      <button @click="toggleShowUsers" v-else>Hide users</button>
+    </transition>
+  </div>
+  <div class="container">
     <transition name="para">
       <p v-if="isParaVisible">This is the paragraph</p>
     </transition>
@@ -21,7 +27,7 @@
 <script>
 export default {
   data() {
-    return { dialogIsVisible: false, doAnimate: false, isParaVisible: false };
+    return { dialogIsVisible: false, doAnimate: false, isParaVisible: false, areUsesVisible: false };
   },
   methods: {
     showDialog() {
@@ -35,6 +41,9 @@ export default {
     },
     toggleParagraph() {
       this.isParaVisible = !this.isParaVisible;
+    },
+    toggleShowUsers() {
+      this.areUsesVisible = !this.areUsesVisible;
     }
   },
 };
@@ -116,6 +125,18 @@ button:active {
 .para-leave-active {
   /*transition: all 0.3s ease-out;*/
   animation: slide-the-box 0.3s ease-in-out forwards;
+}
+
+.show-users-enter-from, .show-users-leave-to {
+  opacity: 0
+}
+
+.show-users-enter-to, .show-users-leave-from {
+  opacity: 1;
+}
+
+.show-users-enter-active, .show-users-leave-active{
+  transition: opacity 0.3s ease;
 }
 
 @keyframes slide-the-box {
