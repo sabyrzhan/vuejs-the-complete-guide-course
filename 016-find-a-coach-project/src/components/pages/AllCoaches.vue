@@ -1,0 +1,29 @@
+<template>
+  <the-filter-header></the-filter-header>
+  <the-base-card>
+    <div>
+      <the-button>Refresh</the-button>
+    </div>
+
+    <the-coach-card v-for="coach in coaches" :coach="coach" :key="coach.id">
+    </the-coach-card>
+
+  </the-base-card>
+</template>
+
+<script>
+import TheFilterHeader from "@/components/TheFilterHeader.vue";
+import TheBaseCard from "@/components/ui/TheBaseCard.vue";
+import TheButton from "@/components/ui/TheButton.vue";
+import TheCoachCard from "@/components/ui/TheCoachCard.vue";
+import {mapState} from "vuex";
+
+export default {
+  components: {TheButton, TheCoachCard, TheBaseCard, TheFilterHeader},
+  computed: {
+    ...mapState('coach', {
+      coaches: state => state.coaches,
+    })
+  }
+}
+</script>
