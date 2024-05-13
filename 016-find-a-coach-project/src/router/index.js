@@ -8,17 +8,21 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/', component: AllCoaches
+      path: '/', redirect: '/coaches'
     },
     {
       path: '/requests', component: TheRequests
     },
     {
-      path: '/coaches/:coachId/details', component: TheCoachDetails
+      path: '/coaches', component: AllCoaches, children: [
+        {
+          path: ':coachId/details', component: TheCoachDetails
+        },
+        {
+          path: ':coachId/contact', component: TheContact
+        }
+      ]
     },
-    {
-      path: '/coaches/:coachId/contact', component: TheContact
-    }
   ]
 })
 

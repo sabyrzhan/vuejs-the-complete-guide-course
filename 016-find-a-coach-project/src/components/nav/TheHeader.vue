@@ -3,7 +3,7 @@
     <div>
       <h2><router-link to="/" active-class="home-active">Find a coach</router-link></h2>
       <section>
-        <router-link to="/">All Coaches</router-link>
+        <router-link to="/coaches">All Coaches</router-link>
         <router-link to="/requests">Requests</router-link>
       </section>
     </div>

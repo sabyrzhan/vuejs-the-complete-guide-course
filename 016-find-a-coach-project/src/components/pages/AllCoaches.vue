@@ -1,5 +1,6 @@
 <template>
   <the-filter-header></the-filter-header>
+  <router-view></router-view>
   <the-base-card>
     <div class="refresh">
       <the-button>Refresh</the-button>
