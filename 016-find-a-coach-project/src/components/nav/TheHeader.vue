@@ -30,10 +30,14 @@ div {
 
 button {
   background-color: transparent;
-  border: 1px solid pink;
+  border: 1px solid transparent;
   padding: 1rem;
   margin: 0.5rem;
   cursor: pointer;
   color: pink;
+}
+
+button:hover {
+  border: 1px solid pink;
 }
 </style>

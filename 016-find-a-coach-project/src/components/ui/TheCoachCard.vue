@@ -5,7 +5,7 @@
     <the-badge v-for="tag in coach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
     <div class="buttons">
       <the-button>Contact</the-button>
-      <the-button bg-color="darkblue" color="white">View Details</the-button>
+      <the-button css-class="primary">View Details</the-button>
     </div>
   </div>
 </template>

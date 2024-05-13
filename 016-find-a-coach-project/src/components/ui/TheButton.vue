@@ -1,12 +1,12 @@
 <template>
-  <button :style="{backgroundColor: bgColor, color: color}">
+  <button :class="cssClass">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-  props: ['bgColor', 'color']
+  props: ['cssClass']
 }
 </script>
 
@@ -18,5 +18,25 @@ button {
   padding: 0.5rem 1.5rem;
   margin: 0 3px;
   cursor: pointer;
+}
+
+button.primary {
+  background-color: darkblue;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: blue;
+}
+button.primary:active {
+  background-color: transparent;
+  color: inherit;
+}
+
+button:hover {
+  background-color: bisque;
+}
+button:active {
+  background-color: transparent;
 }
 </style>
