@@ -1,7 +1,7 @@
 <template>
   <the-filter-header></the-filter-header>
   <the-base-card>
-    <div>
+    <div class="refresh">
       <the-button>Refresh</the-button>
     </div>
 
@@ -27,3 +27,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+div.refresh {
+  margin: 20px 0;
+}
+</style>
