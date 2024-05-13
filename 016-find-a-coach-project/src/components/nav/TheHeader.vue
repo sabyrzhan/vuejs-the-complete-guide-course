@@ -1,10 +1,10 @@
 <template>
   <header>
     <div>
-      <h2>Find a coach</h2>
+      <h2><router-link to="/" active-class="home-active">Find a coach</router-link></h2>
       <section>
-        <button>All Coaches</button>
-        <button>Requests</button>
+        <router-link to="/">All Coaches</router-link>
+        <router-link to="/requests">Requests</router-link>
       </section>
     </div>
   </header>
@@ -21,6 +21,14 @@ header {
   color: white;
 }
 
+a {
+  text-decoration: none;
+}
+
+h2 a {
+  color: white;
+}
+
 div {
   width: 60%;
   margin: auto;
@@ -28,7 +36,7 @@ div {
   justify-content: space-between;
 }
 
-button {
+a {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 1rem;
@@ -37,7 +45,16 @@ button {
   color: pink;
 }
 
-button:hover {
+section {
+  display: flex;
+}
+
+section a:hover {
   border: 1px solid pink;
+}
+
+section a:active, a.router-link-active {
+  border: 1px solid pink;
+  background-color: blue;
 }
 </style>

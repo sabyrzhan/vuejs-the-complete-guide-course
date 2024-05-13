@@ -4,8 +4,8 @@
     <p><strong>{{ coach.price }}</strong></p>
     <the-badge v-for="tag in coach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
     <div class="buttons">
-      <the-button>Contact</the-button>
-      <the-button css-class="primary">View Details</the-button>
+      <the-button :link="'/coaches/' + coach.id + '/contact'">Contact</the-button>
+      <the-button css-class="primary" :link="'/coaches/' + coach.id + '/details'">View Details</the-button>
     </div>
   </div>
 </template>
@@ -20,13 +20,6 @@ export default {
 </script>
 
 <style scoped>
-div.container {
-  border-radius: 10px;
-  border: 1px solid black;
-  padding: 0.5rem;
-  margin: 0.7rem 0;
-}
-
 div.buttons {
   display: flex;
   flex-direction: row;

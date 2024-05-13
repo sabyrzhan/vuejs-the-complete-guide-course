@@ -21,4 +21,11 @@ body {
   margin: 0;
   font-family: 'Reddit Sans', sans-serif;
 }
+
+div.container {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 0.7rem 0;
+}
 </style>
