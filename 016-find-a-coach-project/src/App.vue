@@ -5,7 +5,9 @@ import TheHeader from "@/components/nav/TheHeader.vue";
 
 <template>
   <the-header></the-header>
-  <RouterView />
+  <transition name="fade" mode="out-in">
+    <RouterView />
+  </transition>
 </template>
 
 <style>
@@ -28,4 +30,18 @@ div.container {
   padding: 1rem;
   margin: 0.7rem 0;
 }
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-in-out;
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
+
+
 </style>
