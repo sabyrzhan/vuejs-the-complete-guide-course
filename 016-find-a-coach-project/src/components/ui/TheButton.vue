@@ -1,5 +1,5 @@
 <template>
-  <router-link :class="cssClass" :to="link" v-if="link !== ''"><slot></slot></router-link>
+  <router-link :class="cssClass" :to="link" v-if="link"><slot></slot></router-link>
   <button :class="cssClass" v-else>
     <slot></slot>
   </button>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ['cssClass', 'link']
+  props: ['cssClass', 'link', 'click']
 }
 </script>
 
