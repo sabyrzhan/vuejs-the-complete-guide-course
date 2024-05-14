@@ -9,6 +9,7 @@
       <h2>Interested? Reach out now!</h2>
       <the-badge css-class="frontend">Contact</the-badge>
       <div class="container">
+        <p class="success" v-if="messageSent">Message sent successfully!</p>
         <label for="email" :class="{invalid: !emailIsValid}">Your E-Mail</label>
         <input type="email" id="email" v-model="email" :class="{invalid: !emailIsValid}" @blur="validate" />
         <label for="message" :class="{invalid: !messageIsValid}">Message</label>
@@ -39,7 +40,8 @@ export default {
       email: '',
       message: '',
       emailIsValid: true,
-      messageIsValid: true
+      messageIsValid: true,
+      messageSent: false
     }
   },
   computed: {
@@ -62,6 +64,7 @@ export default {
       this.sendRequest({id: new Date().getTime(), email: this.email, message: this.message})
       this.email = '';
       this.message = '';
+      this.messageSent = true;
     },
     ...mapActions('requests', ['sendRequest'])
   }
@@ -105,5 +108,10 @@ textarea {
 
 div.badges {
   padding: 10px;
+}
+
+p.success {
+  font-weight: bold;
+  text-align: center;
 }
 </style>

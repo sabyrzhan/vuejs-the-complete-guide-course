@@ -24,6 +24,9 @@ export default {
         addFilter(state, filter) {
             state.filter.push(filter)
         },
+        removeFilter(state, filter) {
+            state.filter = state.filter.filter(v => v !== filter)
+        },
         resetFilter(state) {
             state.filter = []
         }
@@ -31,6 +34,9 @@ export default {
     actions: {
         addFilter(ctx, filter) {
             ctx.commit('addFilter', filter)
+        },
+        removeFilter(ctx, filter) {
+            ctx.commit('removeFilter', filter)
         },
         resetFilter(ctx) {
             ctx.commit('resetFilter')
