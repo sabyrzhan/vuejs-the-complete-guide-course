@@ -15,5 +15,15 @@ export default {
                 }
             ]
         }
+    },
+    mutations: {
+        storeContact(state, payload) {
+            state.requests.push(payload);
+        }
+    },
+    actions: {
+        sendRequest(ctx, payload) {
+            ctx.commit('storeContact', payload)
+        }
     }
 }

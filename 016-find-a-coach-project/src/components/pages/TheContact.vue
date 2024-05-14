@@ -9,12 +9,12 @@
       <h2>Interested? Reach out now!</h2>
       <the-badge css-class="frontend">Contact</the-badge>
       <div class="container">
-        <label for="email">Your E-Mail</label>
-        <input type="text" id="email" />
-        <label for="message">Message</label>
-        <textarea id="message"></textarea>
+        <label for="email" :class="{invalid: !emailIsValid}">Your E-Mail</label>
+        <input type="email" id="email" v-model="email" :class="{invalid: !emailIsValid}" @blur="validate" />
+        <label for="message" :class="{invalid: !messageIsValid}">Message</label>
+        <textarea id="message" v-model="message" :class="{invalid: !messageIsValid}" @blur="validate"></textarea>
         <div class="buttons">
-          <the-button css-class="primary">Send message</the-button>
+          <the-button css-class="primary" @click="sendMessage">Send message</the-button>
         </div>
       </div>
     </the-base-card>
@@ -28,16 +28,42 @@
   </div>
 </template>
 <script>
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import TheBaseCard from "@/components/ui/TheBaseCard.vue";
 import TheButton from "@/components/ui/TheButton.vue";
 import TheBadge from "@/components/ui/TheBadge.vue";
 export default {
   components: {TheBadge, TheButton, TheBaseCard},
+  data() {
+    return {
+      email: '',
+      message: '',
+      emailIsValid: true,
+      messageIsValid: true
+    }
+  },
   computed: {
     ...mapState('coach', {
       'coach': state => state.coaches[0]
     })
+  },
+  methods: {
+    validate() {
+      this.emailIsValid = this.email.trim() !== ''
+      this.messageIsValid = this.message.trim() !== ''
+
+      return this.emailIsValid && this.messageIsValid;
+    },
+    sendMessage() {
+      const isValid = this.validate();
+      if (!isValid) {
+        return false;
+      }
+      this.sendRequest({id: new Date().getTime(), email: this.email, message: this.message})
+      this.email = '';
+      this.message = '';
+    },
+    ...mapActions('requests', ['sendRequest'])
   }
 }
 </script>
@@ -62,6 +88,14 @@ input {
 label {
   display: block;
   margin: 7px 0;
+}
+
+label.invalid {
+  color: red;
+}
+
+input.invalid, textarea.invalid {
+  border: 1px solid red;
 }
 
 textarea {
