@@ -1,7 +1,8 @@
 <template>
   <the-base-card>
     <h2>Requests Received</h2>
-    <request-card v-for="req in requests" :request="req"></request-card>
+    <request-card v-for="req in requests" :request="req" v-if="requests.length !== 0"></request-card>
+    <h3 v-else>No requests found.</h3>
   </the-base-card>
 </template>
 <script>
@@ -18,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h2, h3 {
   text-align: center;
 }
 </style>
