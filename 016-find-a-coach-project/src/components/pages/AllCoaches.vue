@@ -1,15 +1,17 @@
 <template>
-  <the-filter-header></the-filter-header>
-  <router-view></router-view>
-  <the-base-card>
-    <div class="refresh">
-      <the-button>Refresh</the-button>
-    </div>
+  <div v-if="this.$route.name === 'coaches'">
+    <the-filter-header></the-filter-header>
+    <the-base-card>
+      <div class="refresh">
+        <the-button>Refresh</the-button>
+      </div>
 
-    <the-coach-card v-for="coach in coaches" :coach="coach" :key="coach.id">
-    </the-coach-card>
+      <the-coach-card v-for="coach in coaches" :coach="coach" :key="coach.id">
+      </the-coach-card>
 
-  </the-base-card>
+    </the-base-card>
+  </div>
+  <router-view v-else></router-view>
 </template>
 
 <script>
