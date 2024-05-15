@@ -5,9 +5,11 @@ import TheHeader from "@/components/nav/TheHeader.vue";
 
 <template>
   <the-header></the-header>
-  <transition name="fade" mode="out-in">
-    <RouterView />
-  </transition>
+  <router-view v-slot="props">
+    <transition name="fade" mode="out-in">
+      <component :is="props.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <style>
