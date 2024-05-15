@@ -1,13 +1,32 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import TheHeader from "@/components/nav/TheHeader.vue";
+import TheBaseCard from "@/components/ui/TheBaseCard.vue";
+</script>
+<script>
+import {mapActions, mapState} from "vuex";
+
+export default {
+  methods: {
+    ...mapActions('coach', ['loadData'])
+  },
+  computed: {
+    ...mapState('coach', ['dataLoaded'])
+  },
+  mounted() {
+    this.loadData();
+  }
+}
 </script>
 
 <template>
   <the-header></the-header>
   <router-view v-slot="props">
     <transition name="fade" mode="out-in">
-      <component :is="props.Component"></component>
+      <the-base-card v-if="!dataLoaded">
+        <div class="loading">Loading data...</div>
+      </the-base-card>
+      <component :is="props.Component" v-else></component>
     </transition>
   </router-view>
 </template>
@@ -24,6 +43,10 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Reddit Sans', sans-serif;
+}
+
+div.loading {
+  text-align: center;
 }
 
 div.container {
