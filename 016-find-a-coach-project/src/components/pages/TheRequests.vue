@@ -11,12 +11,11 @@
   </the-base-card>
 </template>
 <script>
-import TheBaseCard from "@/components/ui/TheBaseCard.vue";
 import RequestCard from "@/components/ui/RequestCard.vue";
 import {mapState} from "vuex";
 
 export default {
-  components: {TheBaseCard, RequestCard},
+  components: {RequestCard},
   computed: {
     ...mapState('requests', ['requests', 'dataLoaded'])
   }

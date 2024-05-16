@@ -8,10 +8,6 @@
     </div>
   </the-base-card>
 </template>
-<script setup lang="js">
-import TheBaseCard from "@/components/ui/TheBaseCard.vue";
-import TheBadge from "@/components/ui/TheBadge.vue";
-</script>
 
 <script lang="js">
 import {mapGetters} from "vuex";

@@ -30,12 +30,8 @@
 </template>
 <script>
 import {mapActions, mapGetters} from "vuex";
-import TheBaseCard from "@/components/ui/TheBaseCard.vue";
-import TheButton from "@/components/ui/TheButton.vue";
-import TheBadge from "@/components/ui/TheBadge.vue";
 
 export default {
-  components: {TheBadge, TheButton, TheBaseCard},
   data() {
     return {
       email: '',

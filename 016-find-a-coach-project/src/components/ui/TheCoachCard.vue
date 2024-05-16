@@ -10,11 +10,8 @@
   </div>
 </template>
 <script>
-import TheBadge from "@/components/ui/TheBadge.vue";
-import TheButton from "@/components/ui/TheButton.vue";
 
 export default {
-  components: {TheButton, TheBadge},
   props: ['coach'],
   computed: {
     coachContactLink() {

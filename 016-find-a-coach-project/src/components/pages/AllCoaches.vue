@@ -15,13 +15,11 @@
 
 <script>
 import TheFilterHeader from "@/components/TheFilterHeader.vue";
-import TheBaseCard from "@/components/ui/TheBaseCard.vue";
-import TheButton from "@/components/ui/TheButton.vue";
 import TheCoachCard from "@/components/ui/TheCoachCard.vue";
 import {mapGetters, mapMutations} from "vuex";
 
 export default {
-  components: {TheButton, TheCoachCard, TheBaseCard, TheFilterHeader},
+  components: {TheCoachCard, TheFilterHeader},
   computed: {
     ...mapGetters('coach', ['filteredCoaches'])
   },

@@ -8,10 +8,6 @@
   </the-base-card>
 </template>
 
-<script setup lang="js">
-import TheBaseCard from "@/components/ui/TheBaseCard.vue";
-</script>
-
 <script lang="js">
 import {mapActions, mapState} from "vuex";
 
