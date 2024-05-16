@@ -25,7 +25,7 @@ export default {
   <the-header></the-header>
   <router-view v-slot="props">
     <transition name="fade" mode="out-in">
-      <the-base-card v-if="!dataLoaded">
+      <the-base-card v-if="$route.name !== 'notFound' && !dataLoaded">
         <div class="loading">Loading data...</div>
       </the-base-card>
       <component :is="props.Component" v-else></component>
