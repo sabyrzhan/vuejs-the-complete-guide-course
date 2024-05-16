@@ -1,7 +1,10 @@
 <template>
   <the-base-card>
     <h3>Find your coach</h3>
-    <span v-for="tag in tags"><input type="checkbox" :checked="isChecked(tag)" :id="tag" @click="toggleFilter($event, tag)" /><label :for="tag">{{ tag }}</label></span>
+    <span v-for="tag in tags">
+      <input type="checkbox" :checked="isChecked(tag)" :id="tag" @click="toggleFilter($event, tag)" />
+      <label :for="tag">{{ tag }}</label>
+    </span>
   </the-base-card>
 </template>
 

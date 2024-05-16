@@ -1,3 +1,5 @@
+import router from "@/router/index.js";
+
 export default {
     namespaced: true,
     state() {
@@ -18,25 +20,28 @@ export default {
         async loadData(state) {
             state.filter = []
             state.dataLoaded = false;
-            try {
-                let response = await fetch(import.meta.env.VITE_REST_API_BASE_URL + "/tags.json")
-                let tags = Object.values(await response.json())
-                if (tags.length !== 0) {
-                    tags = tags[0]
+            const loadItems = async (urlPath) => {
+                let response = await fetch(import.meta.env.VITE_REST_API_BASE_URL + urlPath)
+                let items = Object.values(await response.json())
+                if (items.length !== 0) {
+                    items = items[0]
+                } else {
+                    items = []
                 }
-                state.tags = tags
 
-                response = await fetch(import.meta.env.VITE_REST_API_BASE_URL + "/coaches.json")
-                let coaches = Object.values(await response.json())
-                if (coaches.length !== 0) {
-                    coaches = coaches[0]
-                }
-                state.coaches = coaches;
-                state.dataLoaded = true
+                return items
+            }
+            try {
+                const data = await Promise.all([loadItems('/tags.json'), loadItems('/coaches.json')])
+                state.tags = data[0]
+                state.coaches = data[1]
             } catch(e) {
                 console.log('Error loading data', e)
-                state.dataLoaded = false;
+                state.tags = []
+                state.coaches = []
             }
+
+            state.dataLoaded = true
         }
     },
     actions: {
@@ -45,19 +50,14 @@ export default {
         },
         removeFilter(ctx, filter) {
             ctx.commit('removeFilter', filter)
-        },
-        resetFilter(ctx) {
-            ctx.commit('loadData')
-        },
-        loadData(ctx) {
-            ctx.commit('loadData')
         }
     },
     getters: {
-        getCoach: state => (id) => {
-            return state.coaches.find(c => c.id === id)
+        selectedCoach(state) {
+            const coachId = parseInt(router.currentRoute.value.params.coachId)
+            return state.coaches.find(c => c.id === coachId)
         },
-        getCoaches(state) {
+        filteredCoaches(state) {
             if (state.filter.length === 0) {
                 return state.coaches;
             } else {

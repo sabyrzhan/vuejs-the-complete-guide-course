@@ -18,10 +18,7 @@ import {mapGetters} from "vuex";
 
 export default {
   computed: {
-    selectedCoach() {
-      return this.getCoach(parseInt(this.$route.params.coachId));
-    },
-    ...mapGetters('coach', ['getCoach'])
+    ...mapGetters('coach', ['selectedCoach'])
   }
 }
 </script>
