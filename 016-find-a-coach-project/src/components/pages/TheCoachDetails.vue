@@ -2,9 +2,9 @@
   <the-base-card>
     <div>
       <h2>Coach details</h2>
-      <h3>{{ coach.name }}</h3>
-      <p><strong>{{ coach.price }}</strong></p>
-      <the-badge v-for="tag in coach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
+      <h3>{{ selectedCoach.name }}</h3>
+      <p><strong>{{ selectedCoach.price }}</strong></p>
+      <the-badge v-for="tag in selectedCoach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
     </div>
   </the-base-card>
 </template>
@@ -14,13 +14,14 @@ import TheBadge from "@/components/ui/TheBadge.vue";
 </script>
 
 <script lang="js">
-import {mapState} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   computed: {
-    ...mapState('coach', {
-      coach: state => state.coaches[0]
-    })
+    selectedCoach() {
+      return this.getCoach(parseInt(this.$route.params.coachId));
+    },
+    ...mapGetters('coach', ['getCoach'])
   }
 }
 </script>

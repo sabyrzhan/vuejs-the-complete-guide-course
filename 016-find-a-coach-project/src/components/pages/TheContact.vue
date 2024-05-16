@@ -1,8 +1,8 @@
 <template>
   <div>
     <the-base-card>
-      <h2>{{ coach.name }}</h2>
-      <p><strong>{{ coach.price }}</strong></p>
+      <h2>{{ selectedCoach.name }}</h2>
+      <p><strong>{{ selectedCoach.price }}</strong></p>
     </the-base-card>
 
     <the-base-card>
@@ -22,17 +22,18 @@
 
     <the-base-card>
       <div class="badges">
-        <the-badge v-for="tag in coach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
+        <the-badge v-for="tag in selectedCoach.tags" :key="tag" :css-class="tag">{{ tag }}</the-badge>
       </div>
     </the-base-card>
 
   </div>
 </template>
 <script>
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import TheBaseCard from "@/components/ui/TheBaseCard.vue";
 import TheButton from "@/components/ui/TheButton.vue";
 import TheBadge from "@/components/ui/TheBadge.vue";
+
 export default {
   components: {TheBadge, TheButton, TheBaseCard},
   data() {
@@ -45,9 +46,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('coach', {
-      'coach': state => state.coaches[0]
-    })
+    selectedCoach() {
+      return this.getCoach(parseInt(this.$route.params.coachId));
+    },
+    ...mapGetters('coach', ['getCoach'])
   },
   methods: {
     validate() {
@@ -61,7 +63,7 @@ export default {
       if (!isValid) {
         return false;
       }
-      this.sendRequest({id: new Date().getTime(), email: this.email, message: this.message})
+      this.sendRequest({email: this.email, message: this.message, coach: this.selectedCoach.name})
       this.email = '';
       this.message = '';
       this.messageSent = true;

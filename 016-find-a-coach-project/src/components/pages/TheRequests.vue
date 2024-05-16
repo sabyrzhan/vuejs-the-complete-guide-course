@@ -1,8 +1,13 @@
 <template>
   <the-base-card>
     <h2>Requests Received</h2>
-    <request-card v-for="req in requests" :request="req" v-if="requests.length !== 0"></request-card>
-    <h3 v-else>No requests found.</h3>
+    <div v-if="!dataLoaded">
+      Loading data..
+    </div>
+    <div v-else>
+      <request-card v-for="req in requests" :request="req" v-if="requests.length !== 0"></request-card>
+      <h3 v-else>No requests found.</h3>
+    </div>
   </the-base-card>
 </template>
 <script>
@@ -13,7 +18,7 @@ import {mapState} from "vuex";
 export default {
   components: {TheBaseCard, RequestCard},
   computed: {
-    ...mapState('requests', ['requests'])
+    ...mapState('requests', ['requests', 'dataLoaded'])
   }
 }
 </script>

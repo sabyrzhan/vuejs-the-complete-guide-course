@@ -4,17 +4,21 @@ import TheHeader from "@/components/nav/TheHeader.vue";
 import TheBaseCard from "@/components/ui/TheBaseCard.vue";
 </script>
 <script>
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   methods: {
-    ...mapActions('coach', ['loadData'])
+    ...mapActions('coach', ['loadData']),
+    ...mapMutations('requests', {
+      loadRequestsData: "loadData"
+    }),
   },
   computed: {
     ...mapState('coach', ['dataLoaded'])
   },
   mounted() {
     this.loadData();
+    this.loadRequestsData();
   }
 }
 </script>

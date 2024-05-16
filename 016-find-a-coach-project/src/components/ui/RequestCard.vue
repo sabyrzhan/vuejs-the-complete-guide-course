@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="email">{{ request.email}}</p>
+    <p><span class="email">{{ request.email}}</span> to {{request.coach}}</p>
     <p>{{ request.message }}</p>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 p {
   margin: 0;
 }
-p.email {
+span.email {
   color: darkblue;
   font-weight: bold;
 }

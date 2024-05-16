@@ -54,6 +54,9 @@ export default {
         }
     },
     getters: {
+        getCoach: state => (id) => {
+            return state.coaches.find(c => c.id === id)
+        },
         getCoaches(state) {
             if (state.filter.length === 0) {
                 return state.coaches;
