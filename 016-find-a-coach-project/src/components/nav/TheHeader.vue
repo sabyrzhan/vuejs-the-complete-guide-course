@@ -21,14 +21,6 @@ header {
   color: white;
 }
 
-a {
-  text-decoration: none;
-}
-
-h2 a {
-  color: white;
-}
-
 div {
   width: 60%;
   margin: auto;
@@ -43,17 +35,20 @@ a {
   margin: 0.5rem;
   cursor: pointer;
   color: pink;
+  text-decoration: none;
 }
 
 section {
   display: flex;
 }
 
-section a:hover {
-  border: 1px solid pink;
+h2 a {
+  color: white;
 }
 
-section a:active, a.router-link-active {
+section a:active,
+section a:hover,
+a.router-link-active {
   border: 1px solid pink;
   background-color: blue;
 }
