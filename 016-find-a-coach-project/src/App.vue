@@ -9,7 +9,7 @@ import {mapActions, mapMutations, mapState} from "vuex";
 export default {
   methods: {
     ...mapActions('coach', ['loadData']),
-    ...mapMutations('requests', { loadRequestsData: "loadData" }),
+    ...mapActions('requests', { loadRequestsData: "loadData" }),
   },
   computed: {
     ...mapState('coach', ['dataLoaded'])
