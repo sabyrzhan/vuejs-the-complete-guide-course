@@ -16,7 +16,7 @@
 <script>
 import TheFilterHeader from "@/components/TheFilterHeader.vue";
 import TheCoachCard from "@/components/ui/TheCoachCard.vue";
-import {mapGetters, mapMutations} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   components: {TheCoachCard, TheFilterHeader},
@@ -24,7 +24,7 @@ export default {
     ...mapGetters('coach', ['filteredCoaches'])
   },
   methods: {
-    ...mapMutations('coach', ['loadData'])
+    ...mapActions('coach', ['loadData'])
   }
 }
 </script>
