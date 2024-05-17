@@ -8,9 +8,10 @@ export default {
       hourlyRate: data.rate,
       areas: data.areas
     };
+    const token = context.rootGetters.token;
 
     const response = await fetch(
-      `${process.env.VUE_APP_REST_API_URL}/coaches/${userId}.json`,
+      `${process.env.VUE_APP_REST_API_URL}/coaches/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
