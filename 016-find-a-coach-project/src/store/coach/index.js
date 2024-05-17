@@ -1,4 +1,3 @@
-import router from "@/router/index.js";
 import mutations from "@/store/coach/mutations.js";
 import actions from "@/store/coach/actions.js";
 import getters from "@/store/coach/getters.js";
