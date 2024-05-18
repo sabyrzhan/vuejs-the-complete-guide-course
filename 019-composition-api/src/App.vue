@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <user-data :first-name="firstName" :last-name="lastName"></user-data>
+    <user-data :first-name="firstName" :last-name="lastName" @increase-age="handleIncreaseAge"></user-data>
     <div>
       <input type="text" v-model="firstName"/>
       <input type="text" v-model="lastName"/>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {computed, ref, watch} from "vue";
+import {computed, provide, ref, watch} from "vue";
 import UserData from "@/components/UserData.vue";
 
 export default {
@@ -20,6 +20,9 @@ export default {
     const firstName = ref('Name 1')
     const lastName = ref('Name 2')
     const lastUpdated = ref(null)
+    const age = ref(1)
+
+    provide('age', age)
 
     const userName = computed(() => {
       return firstName.value + ' ' + lastName.value
@@ -29,11 +32,15 @@ export default {
       lastName.value = 'Something'
     }
 
+    const handleIncreaseAge = () => {
+      age.value += 10
+    }
+
     watch(userName, (value) => {
       lastUpdated.value = new Date().toLocaleTimeString()
     })
 
-    return { firstName, lastName, lastUpdated, userName, setLastName }
+    return { firstName, lastName, lastUpdated, userName, setLastName, handleIncreaseAge }
   }
 };
 </script>
