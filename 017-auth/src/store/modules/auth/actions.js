@@ -1,3 +1,6 @@
+import router from '@/router';
+let timer = null;
+
 export default {
   async authRequest(ctx, payload) {
     const apiKey = process.env.VUE_APP_FIREBASE_API_KEY;
@@ -21,26 +24,42 @@ export default {
     }
     ctx.commit('setUser', {
       token: responseData.idToken,
-      userId: responseData.localId,
-      tokenExpiration: responseData.expiresIn
+      userId: responseData.localId
     })
     localStorage.setItem('token', responseData.idToken)
     localStorage.setItem('userId', responseData.localId)
+    const expireDate = new Date().getTime() + 5000; //(+responseData.expiresIn * 1000)
+    localStorage.setItem('expireDate', expireDate);
+    ctx.dispatch('initTimer')
+  },
+  initTimer(ctx) {
+    const expiresIn = +localStorage.getItem('expireDate') - new Date().getTime()
+    console.log(expiresIn)
+    timer = setTimeout(() => {
+      console.log('Timeout executed')
+      ctx.dispatch('logout')
+      router.replace('/coaches')
+    }, expiresIn)
   },
   async login(ctx, payload) {
     payload.mode = 'login';
     return ctx.dispatch('authRequest', payload);
   },
   tryLogin(ctx) {
+    const isExpired = +localStorage.getItem('expireDate') - new Date().getTime()
+    if (isExpired < 0) {
+      return
+    }
+
     const token = localStorage.getItem('token')
     const userId = localStorage.getItem('userId')
     if (token != null && userId != null) {
       ctx.commit('setUser', {
         userId: userId,
         token: token,
-        tokenExpiration: null
       });
     }
+    ctx.dispatch('initTimer')
   },
   async signup(ctx, payload) {
     payload.mode = 'signup';
@@ -48,11 +67,12 @@ export default {
   },
   logout(ctx) {
     ctx.commit('setUser', {
-      userId: null,
       token: null,
-      tokenExpiration: null
+      userId: null
     })
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+    localStorage.removeItem('expireDate')
+    clearTimeout(timer);
   }
 }
