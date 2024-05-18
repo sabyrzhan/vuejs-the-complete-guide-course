@@ -1,8 +1,8 @@
 <template>
   <section class="container">
     <h2>My Course Goal</h2>
-    <h3 v-if="isShown">{{ goal }}</h3>
-    <button @click="toggle">Toggle Goal</button>
+    <h3 v-if="data.isShown">{{ data.goal }}</h3>
+    <button @click="data.toggle">Toggle Goal</button>
   </section>
 </template>
 
@@ -11,12 +11,17 @@ import {ref} from "vue";
 
 export default {
   setup() {
-    const goal = ref('My course goal');
-    const isShown = ref(true);
     function toggle() {
-      isShown.value = !isShown.value;
+      data.value.isShown = !data.value.isShown
     }
-    return { goal: goal, isShown: isShown, toggle: toggle }
+
+    const data = ref({
+      goal: 'My course goal',
+      isShown: true,
+      toggle
+    });
+
+    return { data: data }
   }
 };
 </script>
