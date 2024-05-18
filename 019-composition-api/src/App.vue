@@ -3,33 +3,36 @@
     <h2>My Course Goal</h2>
     <h3>{{ userName }}</h3>
     <div>
-      <input type="text" v-model="data.firstName"/>
-      <input type="text" v-model="data.lastName"/>
+      <input type="text" v-model="firstName"/>
+      <input type="text" ref="lastName"/>
     </div>
-    <div>{{ data.lastUpdated }}</div>
+    <button @click="setLastName">Set lastname</button>
+    <div>{{ lastUpdated }}</div>
   </section>
 </template>
 
 <script>
-import {computed, reactive, watch} from "vue";
+import {computed, ref, watch} from "vue";
 
 export default {
   setup() {
-    const data = reactive({
-      firstName: 'Name 1',
-      lastName: 'Name 2',
-      lastUpdated: null
-    });
+    const firstName = ref('Name 1')
+    const lastName = ref('Name 2')
+    const lastUpdated = ref(null)
 
     const userName = computed(() => {
-      return data.firstName + ' ' + data.lastName
+      return firstName.value + ' ' + lastName.value.value
     })
+
+    const setLastName = () => {
+      lastName.value.value = 'Something'
+    }
 
     watch(userName, (value) => {
-      data.lastUpdated = new Date().toLocaleTimeString()
+      lastUpdated.value = new Date().toLocaleTimeString()
     })
 
-    return { data: data, userName }
+    return { firstName, lastName, lastUpdated, userName, setLastName }
   }
 };
 </script>
