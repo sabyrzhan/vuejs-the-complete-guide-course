@@ -24,12 +24,24 @@ export default {
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn
     })
+    localStorage.setItem('token', responseData.idToken)
+    localStorage.setItem('userId', responseData.localId)
   },
   async login(ctx, payload) {
     payload.mode = 'login';
     return ctx.dispatch('authRequest', payload);
   },
-
+  tryLogin(ctx) {
+    const token = localStorage.getItem('token')
+    const userId = localStorage.getItem('userId')
+    if (token != null && userId != null) {
+      ctx.commit('setUser', {
+        userId: userId,
+        token: token,
+        tokenExpiration: null
+      });
+    }
+  },
   async signup(ctx, payload) {
     payload.mode = 'signup';
     return ctx.dispatch('authRequest', payload);
@@ -40,5 +52,7 @@ export default {
       token: null,
       tokenExpiration: null
     })
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
   }
 }
