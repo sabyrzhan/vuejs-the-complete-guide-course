@@ -1,30 +1,22 @@
 <template>
   <section class="container">
-    <h2>{{ user.username }}</h2>
-    <h2>{{ user.age }}</h2>
-    <button @click="setAge">Set age</button>
+    <h2>My Course Goal</h2>
+    <h3 v-if="isShown">{{ goal }}</h3>
+    <button @click="toggle">Toggle Goal</button>
   </section>
 </template>
 
 <script>
-import { reactive } from "vue";
+import {ref} from "vue";
 
 export default {
   setup() {
-    const user = reactive({
-      username: 'Max',
-      age: 31
-    })
-    setTimeout(() => {
-      user.username = 'Max 2';
-      user.age = 311
-    }, 2000);
-
-    function setAge() {
-      user.age = 3222;
+    const goal = ref('My course goal');
+    const isShown = ref(true);
+    function toggle() {
+      isShown.value = !isShown.value;
     }
-
-    return { user: user, setAge }
+    return { goal: goal, isShown: isShown, toggle: toggle }
   }
 };
 </script>
