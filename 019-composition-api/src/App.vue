@@ -3,8 +3,8 @@
     <h2>My Course Goal</h2>
     <h3>{{ data.userName }}</h3>
     <div>
-      <input type="text" @input="data.setFirstname"/>
-      <input type="text" @input="data.setLastName"/>
+      <input type="text" v-model="data.firstName"/>
+      <input type="text" v-model="data.lastName"/>
     </div>
   </section>
 </template>
@@ -17,21 +17,13 @@ export default {
     const firstName = ref('')
     const lastName = ref('')
 
-    function setFirstname(event) {
-      firstName.value = event.target.value
-    }
-
-    function setLastName(event) {
-      lastName.value = event.target.value
-    }
-
     const userName = computed(() => {
       return firstName.value + ' ' + lastName.value
     })
 
     const data = reactive({
-      setFirstname,
-      setLastName,
+      firstName,
+      lastName,
       userName
     });
 
