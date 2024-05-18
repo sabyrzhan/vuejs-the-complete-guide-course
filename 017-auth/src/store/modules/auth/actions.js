@@ -34,9 +34,7 @@ export default {
   },
   initTimer(ctx) {
     const expiresIn = +localStorage.getItem('expireDate') - new Date().getTime()
-    console.log(expiresIn)
     timer = setTimeout(() => {
-      console.log('Timeout executed')
       ctx.dispatch('logout')
       router.replace('/coaches')
     }, expiresIn)
