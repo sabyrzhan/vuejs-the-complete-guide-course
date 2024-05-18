@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {reactive} from "vue";
 
 export default {
   setup() {
     function toggle() {
-      data.value.isShown = !data.value.isShown
+      data.isShown = !data.isShown
     }
 
-    const data = ref({
+    const data = reactive({
       goal: 'My course goal',
       isShown: true,
       toggle
