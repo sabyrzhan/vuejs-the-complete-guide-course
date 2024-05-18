@@ -1,10 +1,9 @@
 <template>
   <section class="container">
-    <h2>My Course Goal</h2>
-    <h3>{{ userName }}</h3>
+    <user-data :first-name="firstName" :last-name="lastName"></user-data>
     <div>
       <input type="text" v-model="firstName"/>
-      <input type="text" ref="lastName"/>
+      <input type="text" v-model="lastName"/>
     </div>
     <button @click="setLastName">Set lastname</button>
     <div>{{ lastUpdated }}</div>
@@ -13,19 +12,21 @@
 
 <script>
 import {computed, ref, watch} from "vue";
+import UserData from "@/components/UserData.vue";
 
 export default {
+  components: {UserData},
   setup() {
     const firstName = ref('Name 1')
     const lastName = ref('Name 2')
     const lastUpdated = ref(null)
 
     const userName = computed(() => {
-      return firstName.value + ' ' + lastName.value.value
+      return firstName.value + ' ' + lastName.value
     })
 
     const setLastName = () => {
-      lastName.value.value = 'Something'
+      lastName.value = 'Something'
     }
 
     watch(userName, (value) => {
