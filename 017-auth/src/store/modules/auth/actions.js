@@ -33,5 +33,12 @@ export default {
   async signup(ctx, payload) {
     payload.mode = 'signup';
     return ctx.dispatch('authRequest', payload);
+  },
+  logout(ctx) {
+    ctx.commit('setUser', {
+      userId: null,
+      token: null,
+      tokenExpiration: null
+    })
   }
 }
