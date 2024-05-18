@@ -1,24 +1,38 @@
 <template>
   <section class="container">
     <h2>My Course Goal</h2>
-    <h3 v-if="data.isShown">{{ data.goal }}</h3>
-    <button @click="data.toggle">Toggle Goal</button>
+    <h3>{{ data.userName }}</h3>
+    <div>
+      <input type="text" @input="data.setFirstname"/>
+      <input type="text" @input="data.setLastName"/>
+    </div>
   </section>
 </template>
 
 <script>
-import {reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 
 export default {
   setup() {
-    function toggle() {
-      data.isShown = !data.isShown
+    const firstName = ref('')
+    const lastName = ref('')
+
+    function setFirstname(event) {
+      firstName.value = event.target.value
     }
 
+    function setLastName(event) {
+      lastName.value = event.target.value
+    }
+
+    const userName = computed(() => {
+      return firstName.value + ' ' + lastName.value
+    })
+
     const data = reactive({
-      goal: 'My course goal',
-      isShown: true,
-      toggle
+      setFirstname,
+      setLastName,
+      userName
     });
 
     return { data: data }
