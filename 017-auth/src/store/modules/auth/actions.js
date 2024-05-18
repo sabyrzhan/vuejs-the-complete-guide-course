@@ -28,7 +28,7 @@ export default {
     })
     localStorage.setItem('token', responseData.idToken)
     localStorage.setItem('userId', responseData.localId)
-    const expireDate = new Date().getTime() + 5000; //(+responseData.expiresIn * 1000)
+    const expireDate = new Date().getTime() + (+responseData.expiresIn * 1000)
     localStorage.setItem('expireDate', expireDate);
     ctx.dispatch('initTimer')
   },
