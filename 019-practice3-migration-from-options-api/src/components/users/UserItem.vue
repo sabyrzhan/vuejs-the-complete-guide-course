@@ -10,10 +10,15 @@ export default {
   props: ['id', 'userName'],
   emits: ['list-projects'],
   methods: {
-    viewProjects() {
-      this.$emit('list-projects', this.id);
-    },
+
   },
+  setup(props, ctx) {
+    const viewProjects = () => {
+      ctx.emit('list-projects', props.id);
+    }
+
+    return { viewProjects }
+  }
 };
 </script>
 
